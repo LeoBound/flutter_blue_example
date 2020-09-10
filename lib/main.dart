@@ -13,6 +13,7 @@ void main() {
   runApp(FlutterBlueApp());
 }
 
+// The home screen - monitors stream of BluetoothState
 class FlutterBlueApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class FlutterBlueApp extends StatelessWidget {
   }
 }
 
+// The screen to show when BT is anything other than ON
 class BluetoothOffScreen extends StatelessWidget {
   const BluetoothOffScreen({Key key, this.state}) : super(key: key);
 
@@ -64,6 +66,7 @@ class BluetoothOffScreen extends StatelessWidget {
   }
 }
 
+// The screen to show when BT is ON
 class FindDevicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -76,7 +79,11 @@ class FindDevicesScreen extends StatelessWidget {
             FlutterBlue.instance.startScan(timeout: Duration(seconds: 4)),
         child: SingleChildScrollView(
           child: Column(
+            // This column has 2 children - both of which are columns
+            // - The top column shows CONNECTED devices
+            // - The bottom column shows UNCONNECTED devices
             children: <Widget>[
+              // Child 1 - Connected devices
               StreamBuilder<List<BluetoothDevice>>(
                 stream: Stream.periodic(Duration(seconds: 2))
                     .asyncMap((_) => FlutterBlue.instance.connectedDevices),
@@ -107,6 +114,8 @@ class FindDevicesScreen extends StatelessWidget {
                       .toList(),
                 ),
               ),
+
+              // Child 2 - unconnected devices
               StreamBuilder<List<ScanResult>>(
                 stream: FlutterBlue.instance.scanResults,
                 initialData: [],

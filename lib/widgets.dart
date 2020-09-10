@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+// Builds a row that can be expanded - expands when you tap a device name
 class ScanResultTile extends StatelessWidget {
   const ScanResultTile({Key key, this.result, this.onTap}) : super(key: key);
 
@@ -12,6 +13,7 @@ class ScanResultTile extends StatelessWidget {
   final VoidCallback onTap;
 
   Widget _buildTitle(BuildContext context) {
+    // If got a device name, then include it above the device id (MAC address)
     if (result.device.name.length > 0) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -32,6 +34,8 @@ class ScanResultTile extends StatelessWidget {
     }
   }
 
+  // And AdvRow is formatted like <label><value>
+  // e.g. 'Complete local name car-leo'
   Widget _buildAdvRow(BuildContext context, String title, String value) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
