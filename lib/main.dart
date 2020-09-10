@@ -159,10 +159,14 @@ class DeviceScreen extends StatelessWidget {
   List<int> _getRandomBytes() {
     final math = Random();
     return [
-      math.nextInt(255),
+      /*math.nextInt(255),
       math.nextInt(255),
       math.nextInt(255),
       math.nextInt(255)
+      */
+      'L'.codeUnitAt(0),
+      'e'.codeUnitAt(0),
+      'o'.codeUnitAt(0),
     ];
   }
 
