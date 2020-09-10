@@ -19,6 +19,8 @@ class FlutterBlueApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.lightBlue,
+      // NB A StreamBuilder is NOT something that builds streams!
+      // Rather, it's a builder that uses data emitted from a stream
       home: StreamBuilder<BluetoothState>(
           stream: FlutterBlue.instance.state,
           initialData: BluetoothState.unknown,
