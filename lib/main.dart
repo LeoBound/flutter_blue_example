@@ -181,6 +181,8 @@ class DeviceScreen extends StatelessWidget {
     ];
   }
 
+  // ServiceTiles are the rows that appear under the MTU Size tile on the
+  // device screen
   List<Widget> _buildServiceTiles(List<BluetoothService> services) {
     return services
         .map(
